@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перевірка ролей | Київ RP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+        .not-found {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<header>🔍 Перевірка ролей | Київ RP</header>
+
+<div class="container">
+    <h2>Введіть свій нікнейм</h2>
+    <input type="text" id="nicknameInput" placeholder="Ведіть: username">
+    <button onclick="checkRole()">Перевірити</button>
+    
+    <div id="result" class="result"></div>
+</div>
+
+<script>
+    // Фіктивна база даних ролей (можна оновити)
+    const roleDatabase = [
+        { nickname: "Fixssi", role: "Власник серверу" },
+        { nickname: "noname_noname", role: "Голова (СБУ)" },
+        { nickname: "GGG_vsnnia", role: "Капітан (СБУ)" },
+        { nickname: "Simon", role: "Гл.Адміністратор" },
+        { nickname: "", role: "" }
+    ];
+
+    function checkRole() {
+        let input = document.getElementById('nicknameInput').value.trim();
+        let resultDiv = document.getElementById('result');
+
+        let found = roleDatabase.find(entry => entry.nickname.toLowerCase() === input.toLowerCase());
+
+        if (found) {
+            resultDiv.innerHTML = `✅ Користувач знайдений!<br> Роль: ${found.role}`;
+            resultDiv.classList.remove("not-found");
+        } else {
+            resultDiv.innerHTML = "❌ Користувач не знайдений!";
+            resultDiv.classList.add("not-found");
+        }
+    }
+</script>
+
+</body>
+</html>
